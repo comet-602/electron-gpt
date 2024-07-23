@@ -19,7 +19,7 @@ app.post('/api/chat', async (req, res) => {
     console.log(message)
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // 可以根據需要選擇不同的模型
+      model: 'gpt-4', // 可以根據需要選擇不同的模型
       messages: [{ role: 'user', content: message }],
     });
 
