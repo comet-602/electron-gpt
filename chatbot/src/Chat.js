@@ -18,7 +18,7 @@ const ChatBox = () => {
         ...prevMessages,
         { text: input, type: 'user' }
       ]);
-
+   
       try {
         const response = await fetch('/api/chat', { // 替換為你的 Node.js API 路徑
           method: 'POST',
@@ -30,34 +30,24 @@ const ChatBox = () => {
 
         if (response.ok) {
           const result = await response.json();
-          if (result.error) {
-            // 連接後端成功但 OpenAI API 返回錯誤
-            setMessages(prevMessages => [
-              ...prevMessages,
-              { text: '無法聊天', type: 'gpt' }
-            ]);
-          } else {
-            // 添加 GPT 消息
-            setMessages(prevMessages => [
-              ...prevMessages,
-              { text: result.reply, type: 'gpt' }
-            ]);
-          }
-        } else {
-          // 連接後端失敗
           setMessages(prevMessages => [
             ...prevMessages,
-            { text: '無法連線', type: 'gpt' }
+            { text: result.reply, type: 'gpt' }
+          ]);
+        } else {
+          const result = await response.json();
+          setMessages(prevMessages => [
+            ...prevMessages,
+            { text: result.error, type: 'gpt' }
           ]);
         }
       } catch (error) {
         // 連接後端失敗
         setMessages(prevMessages => [
           ...prevMessages,
-          { text: '無法連線', type: 'gpt' }
+          { text: '連接後端失敗', type: 'gpt' }
         ]);
       }
-
       setInput('');
     }
   };
