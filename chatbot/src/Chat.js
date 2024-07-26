@@ -2,25 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 const ChatBox = () => {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
-  const messagesEndRef = useRef(null); // 用於滾動到最新消息
+  const [messages, setMessages] = useState([]);   //管理訊息列表
+  const [input, setInput] = useState('');         //管理使用者輸入
+  const messagesEndRef = useRef(null);            //滾動到最新消息
 
   useEffect(() => {
-    // 自動滾動到最新消息
+    // 自動滾動到最新訊息
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const handleSend = async () => {
     if (input.trim()) {
-      // 添加用戶消息
       setMessages(prevMessages => [
         ...prevMessages,
         { text: input, type: 'user' }
       ]);
-   
+
       try {
-        const response = await fetch('/api/chat', { // 替換為你的 Node.js API 路徑
+        const response = await fetch('http://127.0.0.1:5000/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -30,9 +29,10 @@ const ChatBox = () => {
 
         if (response.ok) {
           const result = await response.json();
+          console.log(result)
           setMessages(prevMessages => [
             ...prevMessages,
-            { text: result.reply, type: 'gpt' }
+            { text: result.message, type: 'gpt' }
           ]);
         } else {
           const result = await response.json();
@@ -42,10 +42,11 @@ const ChatBox = () => {
           ]);
         }
       } catch (error) {
+        console.log(error)
         // 連接後端失敗
         setMessages(prevMessages => [
           ...prevMessages,
-          { text: '連接後端失敗', type: 'gpt' }
+          { text: '連接遠端失敗', type: 'gpt' }
         ]);
       }
       setInput('');

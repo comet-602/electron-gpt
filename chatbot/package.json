@@ -1,10 +1,16 @@
 {
+  "homepage":".", 
   "name": "gpt-chatbot",
+  "author": "David",
+  "description": "new build",
   "version": "0.1.0",
   "private": true,
-  "main": "src/electron.js",
+  "main": "public/electron.js",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
+    "electron-is-dev": "^3.0.1",
+    "electron-log": "^5.1.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -19,7 +25,6 @@
     "electron-start": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none react-scripts start\"",
     "dist": "npm run build && electron-builder"
   },
-  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,8 +45,19 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "electron": "^31.2.1",
     "electron-builder": "^24.13.3",
     "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "files": [
+      "build/**/*",
+      "public/electron.js"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
