@@ -1,0 +1,135 @@
+.App-header {
+    display: flex;
+    flex-direction: column; /* 使header內容垂直排列 */
+    align-items: center;
+    justify-content: space-between;
+    background-color: #282c34;
+    padding: 10px;
+    color: white;
+    position: relative; /* 使底部按鈕可以在header底部對齊 */
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    background-color: white; 
+    border: 2px solid #ccc; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .username {
+    font-size: 1.5em;
+  }
+  
+  .menu-icon {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-menu button {
+    width: 100%; /* 自動調整寬度 */
+    padding: 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap; /* 防止內容換行 */
+  }
+  
+  .dropdown-menu button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .footer-buttons {
+    display: flex; /* 水平排列按鈕 */
+    justify-content: flex-start; /* 按鈕靠左對齊 */
+    width: 100%;
+    margin-left: 10px; /* 頭像和按鈕之間的間距 */
+  }
+
+  .footer-button {
+    width: 20px; /* 調整按鈕大小 */
+    height: 20px; /* 調整按鈕大小 */
+    margin: 0 5px; /* 調整按鈕之間的水平間距 */
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%; /* 圓形按鈕 */
+    cursor: pointer;
+    font-size: 0.7em; /* 調整字體大小 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-button:hover {
+    background: #0056b3;
+  }
+
+  .button-edit-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  
+  .button-edit-modal input {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 确保 padding 不会溢出边框 */
+  }
+  
+  .button-edit-modal button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-edit-modal button:hover {
+    background-color: #0056b3;
+  }
+

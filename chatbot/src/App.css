@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(5px + 2vmin);
-  color: white;
-}
-
 .chatbox {
   display: flex;
   flex-direction: column;
@@ -83,11 +72,11 @@
 
 .message.user {
   background-color: #d1e7dd;
-  align-self: flex-end; /* 用戶消息顯示在右邊 */
+  align-self: flex-end; 
   text-align: right;
 }
 
 .message.gpt {
-  align-self: flex-start; /* GPT 消息顯示在左邊 */
+  align-self: flex-start; 
   text-align: left;
 }

@@ -1,9 +1,8 @@
-// preload.js
 window.addEventListener('DOMContentLoaded', () => {
-    const { contextBridge, ipcRenderer } = require('electron');
-  
-    contextBridge.exposeInMainWorld('electron', {
-      send: (channel, data) => ipcRenderer.send(channel, data),
-      receive: (channel, func) => ipcRenderer.on(channel, (event, ...args) => func(...args)),
-    });
+  const { contextBridge, ipcRenderer, app  } = require('electron');
+
+  contextBridge.exposeInMainWorld('electron', {
+    openExternal: (url) => ipcRenderer.send('open-external', url),
+    // getAppPath: async () => app.getAppPath()
   });
+});

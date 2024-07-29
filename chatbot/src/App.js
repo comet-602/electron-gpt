@@ -1,13 +1,12 @@
 import React from 'react';
-import Chat from './Chat';
+import Chat from './Chat.js';
+import Header from './Header.js';
 import './App.css';
 
 const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>GPT Chatbot</h1>
-      </header>
+      <Header />
       <Chat />
     </div>
   );

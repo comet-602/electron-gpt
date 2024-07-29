@@ -5,14 +5,14 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const port = 5000; // 伺服器端口
+const port = 5000; 
 
 app.use(cors());
 app.use(bodyParser.json());
 
 // 初始化 OpenAI 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // 使用環境變量管理你的 API 密鑰
+  apiKey: process.env.OPENAI_API_KEY, // 使用環境變數管理你的 API 密鑰
 });
 
 // 路由處理 GPT 請求
@@ -21,10 +21,11 @@ app.post('/api/chat', async (req, res) => {
   console.log("=== connect to backend ===")
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-1', // 可以根據需要選擇不同的模型
+      model: 'gpt-3.5-turbo', // 可以根據需要選擇不同的模型
       messages: [{ role: 'user', content: message }],
     });
     const gptMessage = response.choices[0].message.content;
+    console.log(gptMessage)
     res.json({ message: gptMessage });
   } catch (error) {
     if (error.status === 401) {
@@ -37,6 +38,21 @@ app.post('/api/chat', async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   }
+});
+
+app.get('/api/button-config', (req, res) => {
+  const buttonConfig = {
+    button1: {
+      name: '行事曆',
+      url: 'https://192.168.53.112:8445/APHR/SMS12'
+    },
+    button2: {
+      name: '新聞',
+      url: 'https://news.google.com/home?hl=zh-TW&gl=TW&ceid=TW:zh-Hant'
+    }
+  };
+
+  res.json(buttonConfig);
 });
 
 // 啟動伺服器
